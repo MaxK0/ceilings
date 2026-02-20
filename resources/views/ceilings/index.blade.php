@@ -57,6 +57,16 @@
                             </option>
                         @endforeach
                     </select>
+
+                        <select name="sort" onchange="this.form.submit()">
+                            <option value="">Цена</option>
+                            <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
+                                Цена: по возрастанию
+                            </option>
+                            <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
+                                Цена: по убыванию
+                            </option>
+                        </select>
                 </form>
             </div>
 

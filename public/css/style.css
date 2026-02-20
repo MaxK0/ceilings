@@ -670,6 +670,13 @@ a {
         width: 80%;
     }
 
+    .filters form {
+        justify-content: space-between;
+    }
+    .filters select {
+        flex: 1 1 20rem;
+    }
+
     .detail-grid {
         grid-template-columns: 1fr; /* Одна колонка */
         gap: 2rem;
@@ -693,13 +700,6 @@ a {
 @media (max-width: 992px) {
     .container {
         width: 90%; /* на узких экранах контейнер шире */
-    }
-
-    .filters form {
-        justify-content: space-between;
-    }
-    .filters select {
-        flex: 1 1 20rem;
     }
 }
 

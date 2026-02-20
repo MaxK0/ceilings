@@ -42,6 +42,21 @@ class CeilingController extends Controller
             $query->where('width', '>=', $request->width);
         }
 
+        // Сортировка по цене
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'price_asc':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('price', 'desc');
+                    break;
+            }
+        } else {
+            // Сортировка по умолчанию (например, по ID или названию)
+            $query->orderBy('name');
+        }
+
         $ceilings = $query->paginate(20)->withQueryString();
 
         $categories = Category::orderBy('name')->get();
