@@ -31,7 +31,7 @@ class CeilingController extends Controller
                 $query->where('category_id', $request->category);
             }
         } else {
-            $selectedCategory = Category::first();
+            $selectedCategory = Category::orderBy('name')->first();
         }
 
         // Фильтр по производителю
