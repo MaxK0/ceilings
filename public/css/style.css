@@ -557,20 +557,21 @@ a {
 }
 
 .calculator h2 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: white;
     font-size: 2rem;
 }
 
 .calc-row {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: max-content 1fr;
     gap: 1rem;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
 .calc-row label {
-    min-width: 120px;
+    min-width: 150px;
     font-weight: 500;
 }
 
@@ -586,6 +587,10 @@ a {
 .calc-row input:focus {
     outline: 2px solid white;
     outline-offset: 2px;
+}
+
+.calc-total {
+    margin-top: 1.5rem;
 }
 
 #total-price {
@@ -724,11 +729,6 @@ a {
         font-size: 2.4rem;
     }
 
-    .calc-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
 
     .calc-row label {
         min-width: auto;
@@ -740,7 +740,6 @@ a {
 
     #total-price {
         margin-left: 0;
-        margin-top: 0.5rem;
         display: block;
     }
 }

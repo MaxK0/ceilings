@@ -45,7 +45,7 @@
                     <div class="description">
                         <h2>Описание</h2>
                         <div class="description-content">
-                            {!! $ceiling->description !!} {{-- Без nl2br и e(), так как RichEditor уже форматирует HTML --}}
+                            {!! $ceiling->description !!}
                         </div>
                     </div>
 
@@ -57,6 +57,18 @@
                             <input type="number" id="area" min="1" step="0.1" value="10">
                         </div>
                         <div class="calc-row">
+                            <label for="corners">Доп. углы (шт.):</label>
+                            <input type="number" id="corners" min="0" step="1" value="0">
+                        </div>
+                        <div class="calc-row">
+                            <label for="lights">Светильники (шт.):</label>
+                            <input type="number" id="lights" min="0" step="1" value="0">
+                        </div>
+                        <div class="calc-row">
+                            <label for="chandeliers">Люстры (шт.):</label>
+                            <input type="number" id="chandeliers" min="0" step="1" value="0">
+                        </div>
+                        <div class="calc-row calc-total">
                             <span>Итого:</span>
                             <strong id="total-price">{{ number_format($ceiling->price * 10, 0, ',', ' ') }} ₽</strong>
                         </div>
@@ -109,16 +121,37 @@
 
             // Калькулятор
             const areaInput = document.getElementById('area');
+            const cornersInput = document.getElementById('corners');
+            const lightsInput = document.getElementById('lights');
+            const chandeliersInput = document.getElementById('chandeliers');
             const totalSpan = document.getElementById('total-price');
+
+            // Получаем цены из контроллера
             const pricePerM2 = {{ $ceiling->price }};
+            const pricePerCorner = {{ $cornerPrice }};
+            const pricePerLight = {{ $lightPrice }};
+            const pricePerChandelier = {{ $chandelierPrice }};
 
             function updateTotal() {
                 let area = parseFloat(areaInput.value) || 0;
-                let total = area * pricePerM2;
+                let corners = parseInt(cornersInput.value) || 0;
+                let lights = parseInt(lightsInput.value) || 0;
+                let chandeliers = parseInt(chandeliersInput.value) || 0;
+
+                let total = (area * pricePerM2) +
+                    (corners * pricePerCorner) +
+                    (lights * pricePerLight) +
+                    (chandeliers * pricePerChandelier);
+
                 totalSpan.textContent = total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
             }
 
-            areaInput.addEventListener('input', updateTotal);
+            // Обработчики событий для всех полей ввода
+            [areaInput, cornersInput, lightsInput, chandeliersInput].forEach(input => {
+                input.addEventListener('input', updateTotal);
+            });
+
+            // Инициализация
             updateTotal();
 
             // Обновление слайдера при изменении ориентации

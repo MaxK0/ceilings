@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ceiling;
 use App\Models\Category;
 use App\Models\Manufacturer;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class CeilingController extends Controller
@@ -70,6 +71,11 @@ class CeilingController extends Controller
     public function show($id)
     {
         $ceiling = Ceiling::with(['category', 'manufacturer', 'images'])->findOrFail($id);
-        return view('ceilings.show', compact('ceiling'));
+
+        $cornerPrice = Setting::get('corner_price', 0);
+        $lightPrice = Setting::get('light_price', 0);
+        $chandelierPrice = Setting::get('chandelier_price', 0);
+
+        return view('ceilings.show', compact('ceiling', 'cornerPrice', 'lightPrice', 'chandelierPrice'));
     }
 }
