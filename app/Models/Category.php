@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name', 'image', 'description'
     ];
 
     public function ceilings(): HasMany

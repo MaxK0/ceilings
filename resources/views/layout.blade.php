@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', config('app.name'))</title>
+    <meta name="description" content="Потолки - Уфа">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="icon" href="{{ asset('img/logo.svg') }}">
+{{--    <link rel="icon" href="{{ asset('img/logo.svg') }}">--}}
 </head>
 <body>
 <div id="site">

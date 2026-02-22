@@ -6,11 +6,12 @@
 
 :root {
     --color-main: #fcfcfe;
+    --color-variation-1: #046294;
     --color-variation-2: #0076be;
     --color-btn: #030629;
     --color-btn-hover: #23292f;
     --color-variation-2-rgb: 0, 118, 190;
-    /*--color-variation-2: #2B2C3A;*/
+    /*--color-variation-1: #2B2C3A;*/
     --color-text: #2B2C3A;
     --font-size-normal: 1.6rem;
     --font-size-large: 1.8rem;
@@ -171,7 +172,11 @@ a {
     z-index: 20;
     top: 0;
     left: 0;
+    transition: var(--transition);
     box-shadow: 0 1px 15px 5px rgba(14, 0, 152, 0.2);
+}
+.header-hidden {
+    transform: translateY(-100%);
 }
 .header__container {
     height: 100%;
@@ -202,37 +207,6 @@ a {
 .header__title img {
     width: 5.2rem;
 }
-.header__profile {
-    position: relative;
-}
-.header__profile__name .fa-chevron-up {
-    display: none;
-}
-.header__profile__name {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    cursor: pointer;
-}
-.header__profile__menu {
-    position: absolute;
-    bottom: 0rem;
-    right: 0;
-    display: none;
-    background-color: var(--color-variation-1);
-    color: var(--color-main);
-    padding: 1rem 0.8rem;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
-    z-index: -1;
-}
-.header__profile__menu.active {
-    display: flex;
-    opacity: 1;
-    bottom: -8.6rem;
-}
 
 .main {
     margin-top: 5.5rem;
@@ -248,18 +222,89 @@ a {
     pointer-events: none; /* запрет клика */
 }
 
-.catalog__title {
-    display: flex;
+.title__container {
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     row-gap: 2rem;
     column-gap: 10rem;
     flex-wrap: wrap;
-    margin-bottom: 6rem;
 }
-.catalog__title h1 {
+.title__container h1 {
     margin-bottom: 0;
     flex-shrink: 0;
+}
+
+/* Стили для блока категорий */
+.about__categories {
+    background-color: var(--color-variation-1);
+    color: var(--color-main);
+}
+
+.about__categories h2 {
+    margin-bottom: 3rem;
+}
+
+.about__categories__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-main {
+    padding: 1rem 2rem;
+    background: none;
+    font-size: var(--font-size-normal);
+    color: var(--color-main);
+    border: 2px solid var(--color-main);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.btn-main:hover {
+    background-color: var(--color-btn);
+    color: var(--color-main);
+}
+
+.btn-main.active {
+    background-color: var(--color-btn-hover);
+    color: var(--color-main);
+    cursor: default;
+}
+
+.about__categories-inf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about__categories-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+    font-size: var(--font-size-normal);
+    line-height: 1.6;
+}
+
+.about__categories__inf__more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about__categories__inf__more img {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Карточки */
@@ -675,6 +720,11 @@ a {
         width: 80%;
     }
 
+    .about__categories__inf__more img {
+        width: 20rem;
+        height: 20rem;
+    }
+
     .filters form {
         justify-content: space-between;
     }
@@ -703,8 +753,23 @@ a {
 
 /* Адаптация для планшетов и мобильных */
 @media (max-width: 992px) {
+    section {
+        padding: 4rem 0;
+    }
+
     .container {
         width: 90%; /* на узких экранах контейнер шире */
+    }
+
+    .about__categories-inf {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .about__categories-text {
+        width: 100%;
+    }
+    .about__categories__inf__more {
+        align-self: center;
     }
 }
 
@@ -713,12 +778,16 @@ a {
         width: 95%;
     }
 
+    .btn-main {
+        padding: 0.7rem 1rem;
+    }
+
     .detail-grid {
         gap: 1.5rem;
     }
 
     .gallery .swiper {
-        height: 300px;
+        height: 30rem;
     }
 
     .info {
@@ -746,6 +815,6 @@ a {
 
 @media (max-width: 480px) {
     .gallery .swiper {
-        height: 250px;
+        height: 25rem;
     }
 }

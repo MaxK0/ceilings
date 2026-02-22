@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ceiling;
 use App\Models\Category;
+use App\Models\Ceiling;
 use App\Models\Manufacturer;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -24,8 +24,14 @@ class CeilingController extends Controller
         }
 
         // Фильтр по категории
+        $selectedCategory = null;
         if ($request->filled('category')) {
-            $query->where('category_id', $request->category);
+            $selectedCategory = Category::find($request->category);
+            if ($selectedCategory) {
+                $query->where('category_id', $request->category);
+            }
+        } else {
+            $selectedCategory = Category::first();
         }
 
         // Фильтр по производителю
@@ -38,7 +44,7 @@ class CeilingController extends Controller
             $query->where('thickness', $request->thickness);
         }
 
-        // Фильтр по ширине (можно сделать выбор "до ... м")
+        // Фильтр по ширине
         if ($request->filled('width')) {
             $query->where('width', '>=', $request->width);
         }
@@ -54,19 +60,18 @@ class CeilingController extends Controller
                     break;
             }
         } else {
-            // Сортировка по умолчанию (например, по ID или названию)
             $query->orderBy('name');
         }
 
         $ceilings = $query->paginate(20)->withQueryString();
-
         $categories = Category::orderBy('name')->get();
         $manufacturers = Manufacturer::orderBy('name')->get();
         $thicknesses = Ceiling::distinct()->orderBy('thickness')->pluck('thickness');
         $widths = Ceiling::distinct()->orderBy('width')->pluck('width');
 
-        return view('ceilings.index', compact('ceilings', 'categories', 'manufacturers', 'thicknesses', 'widths'));
+        return view('ceilings.index', compact('ceilings', 'categories', 'manufacturers', 'thicknesses', 'widths', 'selectedCategory'));
     }
+
 
     public function show($id)
     {
