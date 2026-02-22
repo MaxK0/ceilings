@@ -654,7 +654,7 @@ a {
     gap: 1rem;
     align-items: center;
     color: var(--color-variation-2);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .pagination .active, .pagination .disabled {
@@ -662,7 +662,7 @@ a {
 }
 
 .pagination .arrow {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
 
 @media (max-width: 1280px) {
