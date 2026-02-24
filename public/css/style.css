@@ -236,20 +236,28 @@ a {
 }
 
 /* Стили для блока категорий */
-.about__categories {
+.about__categories,
+.about__manufacturers {
     background-color: var(--color-variation-1);
     color: var(--color-main);
 }
 
-.about__categories h2 {
+.about__categories h2,
+.about__manufacturers h2 {
     margin-bottom: 3rem;
 }
 
-.about__categories__btns {
+.about__categories__btns,
+.about__manufacturers__btns {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+}
+
+.category-select-mobile,
+.manufacturer-select-mobile {
+    display: none;
 }
 
 .btn-main {
@@ -275,7 +283,8 @@ a {
     cursor: default;
 }
 
-.about__categories-inf {
+.about__categories-inf,
+.about__manufacturers-inf {
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
@@ -283,7 +292,8 @@ a {
     justify-content: space-between;
 }
 
-.about__categories-text {
+.about__categories-text,
+.about__manufacturers-text {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -292,14 +302,16 @@ a {
     line-height: 1.6;
 }
 
-.about__categories__inf__more {
+.about__categories__inf__more,
+.about__manufacturers__inf__more {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
 
-.about__categories__inf__more img {
+.about__categories__inf__more img,
+.about__manufacturers__inf__more img {
     width: 25rem;
     height: 25rem;
     border-radius: 50%;
@@ -396,7 +408,8 @@ a {
     flex-wrap: wrap;
     row-gap: 1rem;
 }
-.filters select {
+.filters select,
+.form-select {
     padding: 1rem 1.5rem;
     font-size: var(--font-size-normal);
     color: var(--color-main);
@@ -720,7 +733,8 @@ a {
         width: 80%;
     }
 
-    .about__categories__inf__more img {
+    .about__categories__inf__more img,
+    .about__manufacturers__inf__more img {
         width: 20rem;
         height: 20rem;
     }
@@ -761,14 +775,17 @@ a {
         width: 90%; /* на узких экранах контейнер шире */
     }
 
-    .about__categories-inf {
+    .about__categories-inf,
+    .about__manufacturers-inf {
         flex-direction: column;
         gap: 1.5rem;
     }
-    .about__categories-text {
+    .about__categories-text,
+    .about__manufacturers-text {
         width: 100%;
     }
-    .about__categories__inf__more {
+    .about__categories__inf__more,
+    .about__manufacturers__inf__more {
         align-self: center;
     }
 }
@@ -776,6 +793,17 @@ a {
 @media (max-width: 768px) {
     .container {
         width: 95%;
+    }
+
+    .category-select-mobile,
+    .manufacturer-select-mobile {
+        display: block;
+        margin-bottom: 2rem;
+    }
+
+    .about__categories__btns,
+    .about__manufacturers__btns {
+        display: none;
     }
 
     .btn-main {

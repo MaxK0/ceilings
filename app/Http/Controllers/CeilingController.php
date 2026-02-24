@@ -35,8 +35,14 @@ class CeilingController extends Controller
         }
 
         // Фильтр по производителю
+        $selectedManufacturer = null;
         if ($request->filled('manufacturer')) {
-            $query->where('manufacturer_id', $request->manufacturer);
+            $selectedManufacturer = Manufacturer::find($request->manufacturer);
+            if ($selectedManufacturer) {
+                $query->where('manufacturer_id', $request->manufacturer);
+            }
+        } else {
+            $selectedManufacturer = Manufacturer::orderBy('name')->first();
         }
 
         // Фильтр по толщине
@@ -69,8 +75,9 @@ class CeilingController extends Controller
         $thicknesses = Ceiling::distinct()->orderBy('thickness')->pluck('thickness');
         $widths = Ceiling::distinct()->orderBy('width')->pluck('width');
 
-        return view('ceilings.index', compact('ceilings', 'categories', 'manufacturers', 'thicknesses', 'widths', 'selectedCategory'));
+        return view('ceilings.index', compact('ceilings', 'categories', 'manufacturers', 'thicknesses', 'widths', 'selectedCategory', 'selectedManufacturer'));
     }
+
 
 
     public function show($id)

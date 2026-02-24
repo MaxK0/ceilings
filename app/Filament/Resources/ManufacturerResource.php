@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ManufacturerResource\Pages;
 use App\Models\Manufacturer;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +14,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -35,6 +38,18 @@ class ManufacturerResource extends Resource
                     ->label('Название')
                     ->required(),
 
+                RichEditor::make('description')
+                    ->label('Описание')
+                    ->required()
+                    ->columnSpanFull(),
+
+                FileUpload::make('image')
+                    ->label('Изображение')
+                    ->image()
+                    ->directory('categories')
+                    ->visibility('public')
+                    ->required(),
+
                 Placeholder::make('created_at')
                     ->label('Создано')
                     ->content(fn(?Manufacturer $record): string => $record?->created_at?->diffForHumans() ?? '-'),
@@ -53,6 +68,10 @@ class ManufacturerResource extends Resource
                     ->label('Название')
                     ->searchable()
                     ->sortable(),
+
+                ImageColumn::make('image')
+                    ->label('Изображение')
+                    ->circular(),
             ])
             ->filters([
                 //

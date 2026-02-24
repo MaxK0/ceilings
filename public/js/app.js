@@ -1,16 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
-    const delta = 5; // Минимальное изменение прокрутки для срабатывания эффекта
+    const delta = 5;
     const headerHeight = header.offsetHeight;
 
     window.addEventListener('scroll', function() {
         const st = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Убедимся, что прокрутили более чем на delta пикселей
         if (Math.abs(lastScrollTop - st) <= delta) return;
 
-        // Если прокручиваем вниз и уже прошли более чем headerHeight пикселей
         if (st > lastScrollTop && st > headerHeight) {
             // Скрываем header
             header.classList.add('header-hidden');
