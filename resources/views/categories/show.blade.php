@@ -5,7 +5,7 @@
 @section('content')
     <section class="show__inf about__categories">
         <div class="container about__categories__container">
-            <h2>{{ $category->name }} натяжные потолки</h2>
+            <h2>{{ $category->name }}</h2>
 
             <!-- Информация о категории -->
             <div class="about__categories-inf">
