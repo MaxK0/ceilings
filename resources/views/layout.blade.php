@@ -61,12 +61,23 @@
                     </div>
                 </div>
                 <div class="footer__social">
-                    <a href="https://vk.com/" class="link-nav">
-                        <i class="fa-brands fa-vk"></i>
-                    </a>
-                    <a href="https://web.telegram.org/" class="link-nav">
-                        <i class="fa-brands fa-telegram"></i>
-                    </a>
+                    <div class="footer__social__block">
+                        <a href="https://vk.com/" class="link-nav">
+                            <i class="fa-brands fa-vk"></i>
+                        </a>
+                        <a href="https://web.telegram.org/" class="link-nav">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </div>
+                    <!-- Кнопка калькулятора с подсказкой -->
+                    <div class="calculator-button-container">
+                        <div class="calculator-button">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div class="calculator-tooltip">
+                            Рассчитать цену натяжного потолка через калькулятор можно внутри карточки товара
+                        </div>
+                    </div>
                 </div>
             </div>
             <p class="footer__copyright">© Ceilings Company</p>

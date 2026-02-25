@@ -686,13 +686,24 @@ a {
     font-size: var(--font-size-small);
 }
 .footer__social {
-    justify-content: center;
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
-.footer__social i {
+.footer__social__block {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.footer__social__block i {
     font-size: 3rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+.footer__social__block i:hover {
+    transform: scale(1.05);
 }
 .footer__social .order {
     display: block;
@@ -726,6 +737,64 @@ a {
 
 .pagination .arrow {
     font-size: 1.7rem;
+}
+
+/* Контейнер кнопки калькулятора */
+.calculator-button-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+}
+
+/* Кнопка калькулятора */
+.calculator-button {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--color-main);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-variation-1);
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.calculator-button:hover {
+    transform: scale(1.05);
+}
+
+.calculator-button i {
+    font-size: 2rem;
+}
+
+/* Подсказка калькулятора */
+.calculator-tooltip {
+    position: absolute;
+    right: 70px;
+    background-color: var(--color-main);
+    color: var(--color-text);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 50rem;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.calculator-button-container:hover .calculator-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
 }
 
 @media (max-width: 1280px) {
@@ -839,10 +908,18 @@ a {
         margin-left: 0;
         display: block;
     }
+
+    .calculator-tooltip {
+        width: 30rem;
+    }
 }
 
 @media (max-width: 480px) {
     .gallery .swiper {
         height: 25rem;
+    }
+
+    .calculator-tooltip {
+        width: 20rem;
     }
 }
